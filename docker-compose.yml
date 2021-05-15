@@ -1,0 +1,65 @@
+version: '3.7'
+services:
+  loki:
+    image: grafana/loki:2.2.1
+    user: root
+    volumes:
+      - loki:/data/loki
+      - ./loki/loki.yml:/etc/loki/local-config.yaml:ro
+      - ./loki/loki_alerts.yml:/etc/loki/rules/alerts/rules.yml:ro
+    ports:
+      - "3100:3100"
+  
+  grafana:
+    image: grafana/grafana:7.5.6
+    volumes:
+      - grafana:/var/lib/grafana
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini:ro
+      - ./grafana/grafana_datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
+      - ./grafana/grafana_dashboard.json:/var/lib/grafana/dashboards/error_dashboard.json:ro
+      - ./grafana/grafana_dashboards.yml:/etc/grafana/provisioning/dashboards/dashboards.yml:ro
+    ports:
+      - "3000:3000"
+
+  prometheus:
+    image: prom/prometheus:v2.27.0
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+    volumes:
+      - prometheus:/prometheus
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./prometheus/alerts.yml:/etc/prometheus/alerts.yml:ro
+    ports:
+      - "9090:9090"
+
+  cadvisor:
+    image: google/cadvisor:v0.33.0
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+
+  alertmanager:
+    image: prom/alertmanager:v0.21.0
+    command:
+      - "--storage.path=/data"
+      - "--config.file=/etc/alertmanager/alertmanager.yml"
+    volumes:
+      - alertmanager:/data
+      - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+    ports:
+      - "9093:9093"
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    ports:
+      - "8025:8025"
+
+volumes:
+  loki:
+  grafana:
+  prometheus:
+  alertmanager:
