@@ -9,6 +9,8 @@ Grafana setup with
 - Mailhog as SMTP host  
   http://localhost:8025
 
+Link to my Blog post: https://andreas-mausch.de/blog/2021/05/14/monitoring-grafana/
+
 # Install Loki Docker Driver
 
 ```bash
