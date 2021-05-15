@@ -57,3 +57,13 @@ http://localhost:8025
 docker-compose rm
 docker volume rm grafana-prometheus-loki-alertmanager-setup_alertmanager grafana-prometheus-loki-alertmanager-setup_grafana grafana-prometheus-loki-alertmanager-setup_loki grafana-prometheus-loki-alertmanager-setup_prometheus
 ```
+
+# Source link in alert e-mails is broken for loki alerts
+
+Right, I don't know how to solve it.
+I think the link displayed is the generatorURL sent to alertmanager.
+
+And [somebody requested](https://github.com/grafana/loki/issues/3119#issuecomment-776453889)
+to support the field in order to allow customized source links.
+
+Maybe this will be fixed soon.
