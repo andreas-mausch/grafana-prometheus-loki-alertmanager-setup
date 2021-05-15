@@ -47,6 +47,7 @@ services:
     command:
       - "--storage.path=/data"
       - "--config.file=/etc/alertmanager/alertmanager.yml"
+      - "--web.external-url=http://localhost:9093"
     volumes:
       - alertmanager:/data
       - ./alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
