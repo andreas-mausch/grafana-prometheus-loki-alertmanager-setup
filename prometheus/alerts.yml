@@ -15,7 +15,7 @@ groups:
         expr: 'absent(container_tasks_state{state="running",name="my-service"})'
         for: 1m
         annotations:
-          title: "Container my-service down"
-          description: "my-service has been down for more than 1 minute."
+          title: "Container {{ $labels.name }} down"
+          description: "{{ $labels.name }} has been down for more than 1 minute."
         labels:
           severity: "critical"
