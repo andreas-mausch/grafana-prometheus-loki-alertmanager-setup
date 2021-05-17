@@ -11,6 +11,11 @@ ingester:
         store: inmemory
       replication_factor: 1
   chunk_idle_period: 15m
+  wal:
+    enabled: true
+    dir: /data/loki/wal
+    flush_on_shutdown: true
+  max_transfer_retries: 0
 
 schema_config:
   configs:
