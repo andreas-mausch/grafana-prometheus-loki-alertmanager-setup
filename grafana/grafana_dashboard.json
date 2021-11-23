@@ -71,7 +71,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum by (container_label_com_docker_compose_service) (container_memory_usage_bytes{container_label_com_docker_compose_service=~\".+\"})",
+          "expr": "sum by (container_label_com_docker_compose_service) (container_memory_usage_bytes{container_label_com_docker_compose_service=~\".+\"} - container_memory_cache{container_label_com_docker_compose_service=~\".+\"})",
           "interval": "",
           "legendFormat": "{{container_label_com_docker_compose_service}}",
           "queryType": "randomWalk",
