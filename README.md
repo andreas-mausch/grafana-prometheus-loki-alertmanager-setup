@@ -104,3 +104,10 @@ Open for more than four years.
 
 The alternative is promtail, which reads logs from the file system.
 I always thought it would be nice if this disk usage could be skipped, however if loki is that unreliable I'll take it.
+
+Also: The docker image tag `grafana/loki-docker-driver:latest` is outdated:
+[https://github.com/grafana/loki/issues/10112](https://github.com/grafana/loki/issues/10112)
+
+If you specify a tag like `3.2.0` explicitly you will use a recent version,
+but the `latest` tag lags three years behind.
+Looks sloppy.
