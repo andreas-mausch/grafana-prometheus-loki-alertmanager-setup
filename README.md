@@ -130,7 +130,7 @@ Open for more than four years.
 > Hit this today. You need to stop publishing this driver immediately until this problem is solved. This is unacceptable.
 > -- https://github.com/grafana/loki/issues/2361#issuecomment-1279757220
 
-If you decide to keep using Loki I recommend to set `loki-retries=2`, `loki-max-backoff=800ms` and `loki-timeout=1s `,
+If you decide to keep using Loki I recommend to set `loki-retries=2`, `loki-max-backoff=800ms` and `loki-timeout=1s`,
 as the official docs suggest.
 I further recommend to change the settings globally in your `daemon.json`:
 [Change the default logging driver](https://grafana.com/docs/loki/latest/send-data/docker-driver/configuration/#change-the-default-logging-driver)
