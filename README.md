@@ -5,7 +5,7 @@ A [Grafana](https://grafana.com/oss/) setup to analyse logs from docker services
 - [Loki](https://grafana.com/oss/loki/) for sending the logs
 - [Prometheus](https://prometheus.io/) (with [cadvisor](https://github.com/google/cadvisor)) for docker container metrics  
 - [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) for sending emails  
-- [Mailhog](https://github.com/mailhog/MailHog) as SMTP host  
+- [Mailpit](https://mailpit.axllent.org/) as SMTP host  
 
 Link to my Blog post:
 [https://andreas-mausch.de/blog/2021-05-14-monitoring-grafana/](https://andreas-mausch.de/blog/2021-05-14-monitoring-grafana/)
@@ -45,7 +45,7 @@ After starting the services, these URLs become available:
 - Grafana: [http://localhost:3000](http://localhost:3000)
 - Prometheus: [http://localhost:9090/alerts](http://localhost:9090/alerts)
 - Alertmanager: [http://localhost:9093/#/alerts](http://localhost:9093/#/alerts)
-- Mailhog: [http://localhost:8025](http://localhost:8025)
+- Mailpit: [http://localhost:8025](http://localhost:8025)
 
 # Start example logging service
 
@@ -57,7 +57,7 @@ docker run -it --rm --name my-service --log-driver=loki --log-opt loki-url="http
 
 After starting the service, you should see logs in grafana.
 
-Stop the service, wait a few minutes, and you should see an alert email in mailhog.
+Stop the service, wait a few minutes, and you should see an alert email in mailpit.
 
 # Multiline
 

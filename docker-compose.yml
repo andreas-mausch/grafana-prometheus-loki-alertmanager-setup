@@ -54,8 +54,8 @@ services:
     ports:
       - "9093:9093"
 
-  mailhog:
-    image: mailhog/mailhog:v1.0.1
+  mailpit:
+    image: axllent/mailpit:v1.20.5
     ports:
       - "8025:8025"
 
