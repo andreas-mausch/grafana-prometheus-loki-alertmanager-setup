@@ -77,7 +77,18 @@ Alerts are sent:
 - When the *my-service* is down for more than 1 minute
 - Any message is logged with the content error, failure or exception.
 
-See the links for Alertmanager and mailhog above.
+The target recipient is `developer@test.com`.
+You can find the e-mails in the Mailpit.
+Note: It might take some minutes, until Alertmanager decides to fire them.
+
+Especially when a container does not exist anymore, `cadvisor` seems to continue sending
+metrics for it. Only after a few minutes a service is marked as *not running*, so be patient please.
+And only after that the one-minute timer in Prometheus will start to tick and
+eventually will switch from *Pending* to *Firing*.
+
+You are of course free to set up your own alerting rules
+and other services which can send alerts to Alertmanager.
+I've just set this up to show an example alert.
 
 # Clean up
 
