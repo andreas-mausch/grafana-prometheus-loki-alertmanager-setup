@@ -61,7 +61,7 @@ Stop the service, wait a few minutes, and you should see an alert email in mailp
 
 # Multiline
 
-We tell Loki how to split multiline logs into the right chunks, but telling how a new line starts.
+We tell Loki how to split multiline logs into the right chunks by telling how a new line starts.
 In our case, it is the regex above for a date.
 
 Check the [Grafana docs](https://grafana.com/docs/loki/latest/clients/promtail/stages/multiline/) on this topic to see allowed values.
