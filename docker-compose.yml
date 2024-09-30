@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   loki:
-    image: grafana/loki:2.2.1
+    image: grafana/loki:3.2.0
     user: root
     volumes:
       - loki:/data/loki
