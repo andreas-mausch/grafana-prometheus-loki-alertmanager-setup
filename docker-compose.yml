@@ -43,7 +43,7 @@ services:
       - /dev/disk/:/dev/disk:ro
 
   alertmanager:
-    image: prom/alertmanager:v0.21.0
+    image: prom/alertmanager:v0.27.0
     command:
       - "--storage.path=/data"
       - "--config.file=/etc/alertmanager/alertmanager.yml"
