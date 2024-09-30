@@ -117,7 +117,11 @@ Maybe this will be fixed soon.
 
 # Thoughts on loki
 
+## Deadlocked Docker Daemon
+
 There is a huge problem with loki and I would not recommend to use it any longer:
+
+[Known Issue: Deadlocked Docker Daemon](https://grafana.com/docs/loki/latest/send-data/docker-driver/#known-issue-deadlocked-docker-daemon)
 
 [if loki is not reachable and loki-docker-driver is activated, containers apps stops and cannot be stopped/killed](https://github.com/grafana/loki/issues/2361)
 
@@ -126,8 +130,19 @@ Open for more than four years.
 > Hit this today. You need to stop publishing this driver immediately until this problem is solved. This is unacceptable.
 > -- https://github.com/grafana/loki/issues/2361#issuecomment-1279757220
 
-The alternative is promtail, which reads logs from the file system.
+If you decide to keep using Loki I recommend to set `loki-retries=2`, `loki-max-backoff=800ms` and `loki-timeout=1s `,
+as the official docs suggest.
+I further recommend to change the settings globally in your `daemon.json`:
+[Change the default logging driver](https://grafana.com/docs/loki/latest/send-data/docker-driver/configuration/#change-the-default-logging-driver)
+
+I am not so sure about `keep-file=true`, I would rather keep it disabled,
+even though *this means you won’t be able to use docker logs once the container is stopped*.
+
+The alternative to Loki is [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/configuration/#docker),
+which reads logs from the file system.
 I always thought it would be nice if this disk usage could be skipped, however if loki is that unreliable I'll take it.
+
+## Outdated latest tag
 
 Also: The docker image tag `grafana/loki-docker-driver:latest` is outdated:
 [https://github.com/grafana/loki/issues/10112](https://github.com/grafana/loki/issues/10112)
