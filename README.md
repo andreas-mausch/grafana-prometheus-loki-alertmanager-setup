@@ -13,7 +13,7 @@ Link to my Blog post:
 # Install Loki Docker Driver
 
 ```bash
-docker plugin install grafana/loki-docker-driver:main-d9380ea --alias loki --grant-all-permissions
+docker plugin install grafana/loki-docker-driver:3.2.0 --alias loki --grant-all-permissions
 ```
 
 # Run
@@ -72,6 +72,13 @@ To stop all services and the according volumes run this:
 
 ```bash
 docker compose down --volumes
+```
+
+To remove the loki plugin:
+
+```bash
+docker plugin disable loki
+docker plugin rm loki
 ```
 
 # Source link in alert e-mails is broken for loki alerts
