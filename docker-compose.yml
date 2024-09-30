@@ -21,7 +21,7 @@ services:
       - "3000:3000"
 
   prometheus:
-    image: prom/prometheus:v2.27.0
+    image: prom/prometheus:v2.54.1
     command:
       - "--config.file=/etc/prometheus/prometheus.yml"
       - "--storage.tsdb.path=/prometheus"
