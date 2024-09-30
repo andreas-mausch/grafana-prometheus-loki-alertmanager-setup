@@ -67,3 +67,17 @@ And [somebody requested](https://github.com/grafana/loki/issues/3119#issuecommen
 to support the field in order to allow customized source links.
 
 Maybe this will be fixed soon.
+
+# Thoughts on loki
+
+There is a huge problem with loki and I would not recommend to use it any longer:
+
+[if loki is not reachable and loki-docker-driver is activated, containers apps stops and cannot be stopped/killed](https://github.com/grafana/loki/issues/2361)
+
+Open for more than four years.
+
+> Hit this today. You need to stop publishing this driver immediately until this problem is solved. This is unacceptable.
+> -- https://github.com/grafana/loki/issues/2361#issuecomment-1279757220
+
+The alternative is promtail, which reads logs from the file system.
+I always thought it would be nice if this disk usage could be skipped, however if loki is that unreliable I'll take it.
