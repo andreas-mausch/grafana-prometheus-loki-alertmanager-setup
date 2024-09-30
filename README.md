@@ -1,15 +1,14 @@
-Grafana setup with
+# What is this?
 
-- Loki for providing logs of running docker containers  
-  http://localhost:3100
-- Prometheus (with cadvisor) for docker container metrics  
-  http://localhost:9090/alerts
-- Alertmanager for sending emails  
-  http://localhost:9093/#/alerts
-- Mailhog as SMTP host  
-  http://localhost:8025
+A [Grafana](https://grafana.com/oss/) setup with
 
-Link to my Blog post: https://andreas-mausch.de/blog/2021-05-14-monitoring-grafana/
+- [Loki](https://grafana.com/oss/loki/) for providing logs of running docker containers  
+- [Prometheus](https://prometheus.io/) (with [cadvisor](https://github.com/google/cadvisor)) for docker container metrics  
+- [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) for sending emails  
+- [Mailhog](https://github.com/mailhog/MailHog) as SMTP host  
+
+Link to my Blog post:
+[https://andreas-mausch.de/blog/2021-05-14-monitoring-grafana/](https://andreas-mausch.de/blog/2021-05-14-monitoring-grafana/)
 
 # Install Loki Docker Driver
 
@@ -20,11 +19,20 @@ docker plugin install grafana/loki-docker-driver:main-d9380ea --alias loki --gra
 # Run
 
 ```bash
-docker-compose up
+docker compose up
 ```
 
-Grafana is accessible at http://localhost:3000  
-The first time login is admin/admin.
+Grafana is accessible at [http://localhost:3000](http://localhost:3000)  
+The first time login credentials are **admin/admin**.
+
+# Links
+
+After starting the services, these URLs become available:
+
+- Grafana: [http://localhost:3000](http://localhost:3000)
+- Prometheus: [http://localhost:9090/alerts](http://localhost:9090/alerts)
+- Alertmanager: [http://localhost:9093/#/alerts](http://localhost:9093/#/alerts)
+- Mailhog: [http://localhost:8025](http://localhost:8025)
 
 # Start example logging service
 
@@ -40,22 +48,30 @@ Stop the service, wait a few minutes, and you should see an alert email in mailh
 
 # Multiline
 
+We tell Loki how to split multiline logs into the right chunks, but telling how a new line starts.
+In our case, it is the regex above for a date.
+
 Check the [Grafana docs](https://grafana.com/docs/loki/latest/clients/promtail/stages/multiline/) on this topic to see allowed values.
 
 # Check alerts
+
+There are two types of alerts:
+
+- Prometheus checks our services run at [prometheus/alerts.yml](prometheus/alerts.yml).
+- Loki checks for any warnings or errors in the log files at [loki/loki_alerts.yml](loki/loki_alerts.yml).
 
 Alerts are sent:
 - When the *my-service* is down for more than 1 minute
 - Any message is logged with the content error, failure or exception.
 
-http://localhost:9093/#/alerts  
-http://localhost:8025
+See the links for Alertmanager and mailhog above.
 
 # Clean up
 
+To stop all services and the according volumes run this:
+
 ```bash
-docker-compose rm
-docker volume rm grafana-prometheus-loki-alertmanager-setup_alertmanager grafana-prometheus-loki-alertmanager-setup_grafana grafana-prometheus-loki-alertmanager-setup_loki grafana-prometheus-loki-alertmanager-setup_prometheus
+docker compose down --volumes
 ```
 
 # Source link in alert e-mails is broken for loki alerts
