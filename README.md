@@ -1,8 +1,8 @@
 # What is this?
 
-A [Grafana](https://grafana.com/oss/) setup with
+A [Grafana](https://grafana.com/oss/) setup to analyse logs from docker services with
 
-- [Loki](https://grafana.com/oss/loki/) for providing logs of running docker containers  
+- [Loki](https://grafana.com/oss/loki/) for sending the logs
 - [Prometheus](https://prometheus.io/) (with [cadvisor](https://github.com/google/cadvisor)) for docker container metrics  
 - [Alertmanager](https://prometheus.io/docs/alerting/latest/alertmanager/) for sending emails  
 - [Mailhog](https://github.com/mailhog/MailHog) as SMTP host  
