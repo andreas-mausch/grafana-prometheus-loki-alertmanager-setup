@@ -25,6 +25,19 @@ docker compose up
 Grafana is accessible at [http://localhost:3000](http://localhost:3000)  
 The first time login credentials are **admin/admin**.
 
+# Grafana dashboard
+
+I've set up a custom Grafana dashboard which shows the memory usage of all
+docker services and the latest log entries with *warning* or *error*.
+
+You can find it's configuration in the [grafana/](grafana/) folder.
+
+To see all the logs, you can select the *Explore* menu item,
+make sure *Code* is selected from Builder/Code and enter the query string
+`{host=~".+"}`.
+
+This should give you all the logs, including info level logging.
+
 # Links
 
 After starting the services, these URLs become available:
