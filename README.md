@@ -38,6 +38,22 @@ make sure *Code* is selected from Builder/Code and enter the query string
 
 This should give you all the logs, including info level logging.
 
+# Advanced queries
+
+You can write more advanced log queries, for example:
+
+```logql
+{host=~".+"} | detected_level=`info` | pattern "<date> <time> <level> <_>"
+```
+
+- `detected_level`:
+  > Explore Logs adds a special detected_level label to all log lines where Loki assigns a level of the log line, including debug, info, warn, error, fatal, critical, trace, or unknown if no level could be determined.
+  > -- https://grafana.com/docs/grafana/latest/explore/simplified-exploration/logs/labels-and-fields/
+  
+  See also [here](https://github.com/grafana/grafana/issues/87564)
+- `pattern`:
+  See [here](https://grafana.com/blog/2021/08/09/new-in-loki-2.3-logql-pattern-parser-makes-it-easier-to-extract-data-from-unstructured-logs/)
+
 # Links
 
 After starting the services, these URLs become available:
