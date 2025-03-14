@@ -13,7 +13,7 @@ Link to my Blog post:
 # Install Loki Docker Driver
 
 ```bash
-docker plugin install grafana/loki-docker-driver:3.2.0 --alias loki --grant-all-permissions
+docker plugin install grafana/loki-docker-driver:3.4.2-amd64 --alias loki --grant-all-permissions
 ```
 
 # Run
